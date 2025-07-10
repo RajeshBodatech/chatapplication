@@ -7,7 +7,7 @@ const ChatList = ({ token, onSelectChat, activeChatId }) => {
   useEffect(() => {
     if (!token) return;
     setLoading(true);
-    fetch('http://localhost:5000/api/chats', {
+    fetch('https://chatapplication-zfio.onrender.com/api/chats', {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -34,7 +34,7 @@ const ChatList = ({ token, onSelectChat, activeChatId }) => {
                 onClick={() => onSelectChat(chat._id)}
               >
                 {other?.profilePic ? (
-                  <img src={`http://localhost:5000/${other.profilePic}`} alt="Profile" className="w-10 h-10 rounded-full object-cover border-2 border-pink-200" />
+                  <img src={`https://chatapplication-zfio.onrender.com/${other.profilePic}`} alt="Profile" className="w-10 h-10 rounded-full object-cover border-2 border-pink-200" />
                 ) : (
                   <div className="w-10 h-10 rounded-full bg-pink-100 flex items-center justify-center text-lg text-pink-400 border-2 border-pink-200">
                     <span>{other?.fullName?.[0] || '?'}</span>
