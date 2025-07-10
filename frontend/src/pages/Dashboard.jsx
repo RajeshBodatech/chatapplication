@@ -38,7 +38,7 @@ const Dashboard = () => {
   useEffect(() => {
     if (active === 'sent') {
       setLoadingSent(true);
-      fetch('http://localhost:5000/api/auth/sent-requests', {
+      fetch('https://chatapplication-zfio.onrender.com/api/auth/sent-requests', {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(res => res.json())
@@ -46,7 +46,7 @@ const Dashboard = () => {
         .catch(() => setSentRequests([]))
         .finally(() => setLoadingSent(false));
       setLoadingAvailable(true);
-      fetch('http://localhost:5000/api/auth/available-users', {
+      fetch('https://chatapplication-zfio.onrender.com/api/auth/available-users', {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(res => res.json())
@@ -56,7 +56,7 @@ const Dashboard = () => {
     }
     if (active === 'received') {
       setLoadingReceived(true);
-      fetch('http://localhost:5000/api/auth/received-requests', {
+      fetch('https://chatapplication-zfio.onrender.com/api/auth/received-requests', {
         headers: { Authorization: `Bearer ${token}` },
       })
         .then(res => res.json())
@@ -67,7 +67,7 @@ const Dashboard = () => {
   }, [active, token]);
 
   const handleSendRequest = async (targetUserId) => {
-    await fetch('http://localhost:5000/api/auth/send-request', {
+    await fetch('https://chatapplication-zfio.onrender.com/api/auth/send-request', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -81,7 +81,7 @@ const Dashboard = () => {
   };
 
   const handleAccept = async (requestId) => {
-    await fetch('http://localhost:5000/api/auth/accept-request', {
+    await fetch('https://chatapplication-zfio.onrender.com/api/auth/accept-request', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -93,7 +93,7 @@ const Dashboard = () => {
   };
 
   const handleDecline = async (requestId) => {
-    await fetch('http://localhost:5000/api/auth/decline-request', {
+    await fetch('https://chatapplication-zfio.onrender.com/api/auth/decline-request', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,7 +117,7 @@ const Dashboard = () => {
           <div className="p-4 animate-fade-in flex justify-center">
             <div className="flex flex-col items-center bg-white bg-opacity-90 rounded-2xl shadow-xl p-8 max-w-xs w-full border border-pink-100">
               {user?.profilePic ? (
-                <img src={`http://localhost:5000/${user.profilePic}`} alt="Profile" className="w-24 h-24 rounded-full object-cover border-4 border-pink-200 shadow mb-4" />
+                <img src={`https://chatapplication-zfio.onrender.com/${user.profilePic}`} alt="Profile" className="w-24 h-24 rounded-full object-cover border-4 border-pink-200 shadow mb-4" />
               ) : (
                 <div className="w-24 h-24 rounded-full bg-pink-100 flex items-center justify-center text-3xl text-pink-400 border-4 border-pink-200 shadow mb-4">
                   <span>{user?.fullName?.[0] || '?'}</span>
@@ -165,7 +165,7 @@ const Dashboard = () => {
                   sentRequests.map(r => (
                     <div key={r._id} className="bg-white rounded-xl shadow p-4 flex flex-col items-center border border-pink-100">
                       {r.user?.profilePic ? (
-                        <img src={`http://localhost:5000/${r.user.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
+                        <img src={`https://chatapplication-zfio.onrender.com/${r.user.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
                       ) : (
                         <div className="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-xl text-pink-400 border-2 border-pink-200 shadow mb-2">
                           <span>{r.user?.fullName?.[0] || '?'}</span>
@@ -191,7 +191,7 @@ const Dashboard = () => {
                   availableUsers.map(u => (
                     <div key={u._id} className="bg-white rounded-xl shadow p-4 flex flex-col items-center border border-pink-100">
                       {u.profilePic ? (
-                        <img src={`http://localhost:5000/${u.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
+                        <img src={`https://chatapplication-zfio.onrender.com/${u.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
                       ) : (
                         <div className="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-xl text-pink-400 border-2 border-pink-200 shadow mb-2">
                           <span>{u.fullName?.[0] || '?'}</span>
@@ -222,7 +222,7 @@ const Dashboard = () => {
                   receivedRequests.map(r => (
                     <div key={r._id} className="bg-white rounded-xl shadow p-4 flex flex-col items-center border border-pink-100">
                       {r.user?.profilePic ? (
-                        <img src={`http://localhost:5000/${r.user.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
+                        <img src={`https://chatapplication-zfio.onrender.com/${r.user.profilePic}`} alt="Profile" className="w-16 h-16 rounded-full object-cover border-2 border-pink-200 shadow mb-2" />
                       ) : (
                         <div className="w-16 h-16 rounded-full bg-pink-100 flex items-center justify-center text-xl text-pink-400 border-2 border-pink-200 shadow mb-2">
                           <span>{r.user?.fullName?.[0] || '?'}</span>
