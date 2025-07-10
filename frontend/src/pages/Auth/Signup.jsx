@@ -30,7 +30,7 @@ const Signup = () => {
       if (value) formData.append(key, value);
     });
     try {
-      const res = await fetch('http://localhost:5000/api/auth/signup', {
+      const res = await fetch('https://chatapplication-zfio.onrender.com/api/auth/signup', {
         method: 'POST',
         body: formData,
       });
