@@ -3,7 +3,7 @@ import { io } from 'socket.io-client';
 import Picker from '@emoji-mart/react';
 import data from '@emoji-mart/data';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = 'https://chatapplication-zfio.onrender.com';
 
 const ChatWindow = ({ token, chatId, user }) => {
   const [messages, setMessages] = useState([]);
@@ -53,7 +53,7 @@ const ChatWindow = ({ token, chatId, user }) => {
   useEffect(() => {
     if (!chatId || !token) return;
     setLoading(true);
-    fetch(`http://localhost:5000/api/chats/${chatId}`, {
+    fetch(`https://chatapplication-zfio.onrender.com/api/chats/${chatId}`, {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then(res => res.json())
@@ -98,7 +98,7 @@ const ChatWindow = ({ token, chatId, user }) => {
     }
     // Fallback: fetch chat list if not in localStorage
     if (!otherUserId) {
-      const res = await fetch('http://localhost:5000/api/chats', { headers: { Authorization: `Bearer ${token}` } });
+      const res = await fetch('https://chatapplication-zfio.onrender.com/api/chats', { headers: { Authorization: `Bearer ${token}` } });
       const chats = await res.json();
       localStorage.setItem('chats', JSON.stringify(chats));
       const found = chats.find(c => c._id === chatId);
@@ -106,7 +106,7 @@ const ChatWindow = ({ token, chatId, user }) => {
     }
     if (!otherUserId) return setSending(false);
     // Save to backend
-    await fetch(`http://localhost:5000/api/chats/${otherUserId}/message`, {
+    await fetch(`https://chatapplication-zfio.onrender.com/api/chats/${otherUserId}/message`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ const ChatWindow = ({ token, chatId, user }) => {
     const formData = new FormData();
     formData.append('image', image);
     // Upload image to backend
-    const res = await fetch(`http://localhost:5000/api/chats/${chatId}/image`, {
+    const res = await fetch(`https://chatapplication-zfio.onrender.com/api/chats/${chatId}/image`, {
       method: 'POST',
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -183,7 +183,7 @@ const ChatWindow = ({ token, chatId, user }) => {
               >
                 {msg.imageUrl && (
                   <img
-                    src={`http://localhost:5000/${msg.imageUrl}`}
+                    src={`https://chatapplication-zfio.onrender.com/${msg.imageUrl}`}
                     alt="chat-img"
                     className="max-w-[200px] max-h-[200px] rounded mb-1 border border-pink-200"
                   />
