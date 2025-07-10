@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
-import Picker from '@emoji-mart/react';
-import data from '@emoji-mart/data';
+import EmojiPicker from 'emoji-picker-react';
 
 const SOCKET_URL = 'https://chatapplication-zfio.onrender.com';
 
@@ -161,8 +160,8 @@ const ChatWindow = ({ token, chatId, user }) => {
     if (mountedRef.current) setSending(false);
   };
 
-  const handleEmojiSelect = (emoji) => {
-    setInput(input + emoji.native);
+  const handleEmojiSelect = (emojiData) => {
+    setInput(input + (emojiData.emoji || ''));
     setShowEmoji(false);
     inputRef.current?.focus();
   };
@@ -208,7 +207,7 @@ const ChatWindow = ({ token, chatId, user }) => {
           </button>
           {showEmoji && (
             <div className="absolute bottom-14 left-2 z-10">
-              <Picker data={data} onEmojiSelect={handleEmojiSelect} theme="light" />
+              <EmojiPicker onEmojiClick={handleEmojiSelect} theme="light" height={350} width={300} />
             </div>
           )}
           <input
